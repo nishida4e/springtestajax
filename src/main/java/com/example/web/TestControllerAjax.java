@@ -18,8 +18,7 @@ public class TestControllerAjax {
 	@RequestMapping(value = "/searchByNameAjax")
 	String searchByName2(@RequestParam String searchKey, Model model) {
 		List<FoodPrice> foodList = foodService.findByName(searchKey);
-
-		return "Ajax処理："+searchKey;
+		return foodList.toString();
 	}
 
 }

@@ -20,10 +20,7 @@
 <script type="text/javascript">
 $(function() {
 	$("#ajaxSearch").click(function() {
-		
 		var searchKey = document.forms.searchForm.keyword.value;
-		alert(searchKey);
-		
 		$.ajax({
 			type : "POST",
 			url : "/searchByNameAjax",
@@ -31,7 +28,7 @@ $(function() {
 			data : {searchKey : searchKey},
 			cache : false,
 			success : function(data, status, xhr) {
-				alert("success");
+				//alert("success");
 				alert(data);
 			},
 			error : function(XMLHttpRequest, status, errorThrown) {
