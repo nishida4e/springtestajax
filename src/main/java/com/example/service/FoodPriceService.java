@@ -3,6 +3,8 @@ package com.example.service;
 import com.example.domain.FoodPrice;
 import com.example.repository.FoodPriceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,5 +37,10 @@ public class FoodPriceService {
 	public List<FoodPrice> findByName(String name) {
 		return fpRepo.findByNameContaining(name);
 	}
+
+	public Page<FoodPrice> findByName(String searchKey, Pageable pageable) {
+		return fpRepo.findByNameContaining(searchKey, pageable);
+	}
+
 
 }
