@@ -22,8 +22,8 @@ public class TestController {
 
 	@GetMapping
 	String init(Model model) {
-		List<FoodPrice> foodList = foodService.findAll();
-		model.addAttribute("foodModel", foodList);
+		//List<FoodPrice> foodList = foodService.findAll();
+		//model.addAttribute("foodModel", foodList);
 		return "menulist";
 	}
 
