@@ -20,9 +20,9 @@ public class TestControllerAjax {
 	@RequestMapping(value = "/onclickDeleteAjax")
 	String onclickDeleteAjax(@RequestParam String id) {
 		foodService.delete(Integer.parseInt(id));
-		return searchByNameAjax("");
+		return null;
 	}
-		
+
 	@RequestMapping(value = "/searchByNameAjax")
 	String searchByNameAjax(@RequestParam String searchKey) {
 		

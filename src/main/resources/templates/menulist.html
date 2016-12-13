@@ -20,11 +20,16 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
+	ajaxSearch();
+});
+
+function ajaxSearch(){
+	var searchKey = document.forms.searchForm.keyword.value;
 	$.ajax({
 		type : "POST",
 		url : "/searchByNameAjax",
 		dataType : "text",
-		data : {searchKey : ""},
+		data : {searchKey : searchKey},
 		cache : false,
 		success : function(data, status, xhr) {
 			//alert("success");
@@ -39,30 +44,11 @@ $(document).ready(function(){
 			alert("status:" + status);
 		}
 	});
-});
+}
 	
 $(function() {
 	$("#ajaxSearch").click(function() {
-		var searchKey = document.forms.searchForm.keyword.value;
-		$.ajax({
-			type : "POST",
-			url : "/searchByNameAjax",
-			dataType : "text",
-			data : {searchKey : searchKey},
-			cache : false,
-			success : function(data, status, xhr) {
-				//alert("success");
-				//alert(data);
-				var firstTr = $("#menutable tr:first-child");
-				var trs = $("#menutable tr:not(:first-child)");
-				trs.remove();
-				firstTr.after(data);
-			},
-			error : function(XMLHttpRequest, status, errorThrown) {
-				alert("fail:" + XMLHttpRequest);
-				alert("status:" + status);
-			}
-		});
+		ajaxSearch();
 	});
 });
 
@@ -75,10 +61,7 @@ function onclickDelete(id){
 		data : {id : id},
 		cache : false,
 		success : function(data, status, xhr) {
-			var firstTr = $("#menutable tr:first-child");
-			var trs = $("#menutable tr:not(:first-child)");
-			trs.remove();
-			firstTr.after(data);
+			ajaxSearch();
 		},
 		error : function(XMLHttpRequest, status, errorThrown) {
 			alert("fail:" + XMLHttpRequest);
@@ -89,20 +72,13 @@ function onclickDelete(id){
 }
 
 function onclickEdit(id){
-
 	document.forms.hidForm.id.value = id;
-	
 	var f = document.forms.hidForm;
 	f.method = "POST";
 	f.action = "/edit";
 	f.submit();
-	
 	return true;
-
 }
-
-
-
 
 </script>
 
